@@ -1,0 +1,53 @@
+I'm taking on broader ownership of this repository's maintenance going
+forward, and before making changes I want to build a complete, precise
+architecture reference — partly for my own understanding, partly as
+documentation I can leave for the team.
+
+Please analyze the codebase and produce:
+
+1. Module inventory — for each top-level module/directory, a concise
+   description of its responsibility and its main entry points
+2. End-to-end request trace — walk through what happens from an incoming
+   user query to the final response, naming the specific files/functions
+   touched at each step
+3. Inter-module dependency map — how modules call each other, what shared
+   infrastructure they rely on (databases, caches, config, message queues,
+   etc.), and which dependencies are one-directional vs bidirectional
+4. Design patterns and architectural choices visible in the code, and what
+   problem each one seems to be solving
+5. Rough edges — places where module boundaries look blurry, logic looks
+   duplicated across modules, or comments/naming suggest known technical
+   debt
+6. A recommended reading order for going deeper into each module afterward
+
+Cite specific file paths and function/class names for everything so I can
+verify directly in the code. If something can't be determined confidently
+from the code alone, say so explicitly rather than guessing.
+
+//
+I want a deep technical walkthrough of the [MODULE NAME — e.g. agent
+orchestration / RAG retrieval / multi-turn context management / answer
+caching / document store] module, as part of building out internal
+architecture documentation and preparing to safely extend or modify it.
+
+For this module, please cover:
+
+1. Core responsibility and where it sits in the overall request flow
+   (what calls into it, what it calls out to)
+2. Key classes/functions, their responsibilities, and how they relate to
+   each other (composition, inheritance, interfaces)
+3. Main control flow — walk through what happens on a typical call, and
+   what happens on the main failure/edge-case paths (timeouts, empty
+   results, malformed input, retries)
+4. Design patterns in use here and why (e.g. strategy/factory/abstract
+   base class), and any config or feature flags that alter behavior
+5. How this module's state or output is consumed downstream, and what
+   contracts/assumptions other modules rely on it maintaining
+6. Test coverage — what's tested, what looks under-tested, and what a
+   good regression test for this module would check
+7. Anything that looks like a known limitation, TODO, or likely source of
+   bugs if extended carelessly
+
+Cite specific file paths, function names, and line ranges wherever
+possible. Flag anything you're inferring versus anything stated explicitly
+in code or comments.
